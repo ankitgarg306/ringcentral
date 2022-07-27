@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+define('TBL_CONTACT','contact');
+define('TBL_USERS','users');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
