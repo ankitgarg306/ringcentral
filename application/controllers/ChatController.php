@@ -1,22 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class ChatController extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		if(!$this->session->userdata('id')){
-			redirect('login', 'refresh');
-		}
+		error_reporting(E_ALL);
 	}
 	
 	public function index()
-	{
-		$this->load->view('include/header');
+	{ 	$this->load->view('include/header');
 		$this->load->view('body/sidebar');
-
-		$this->load->view('dashboard');
+		$this->load->view('chat');
 		$this->load->view('include/footer');
+	
 	}
+
 }

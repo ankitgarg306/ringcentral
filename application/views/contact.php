@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-  <html><head>
-        <title>Contacts</title>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
-
-    </head>
-    <body>
-      <div class='container justify-content-center'>
+<div class='container justify-content-center'>
         <h1>Contacts</h1>
       <table id="stdtable" class="table table-bordered table-striped table-hover">
-        <thead>
+        <thead class="thead-dark">
         <tr>
           <th>Sr.No</th>
            <th>Name</th>
@@ -35,6 +28,40 @@
         </tbody>
       </table>
       </div>
-     
-    </body>
-  </html>
+      <table id="contactTable" class="table table-bordered table-striped table-hover">
+            </table>
+      <script type="text/javascript">
+
+ //////////// simple and ajax datatable view and search
+ //$k = jQuery.noConflict();
+$(document).ready(function() {
+
+    $('#contactTable').DataTable({
+      serverSide: true,
+      processing: true,
+      
+        "ajax": {
+            url : "<?php echo site_url("contactController/getDataTable") ?>",
+            dataSrc: 'records'
+          
+        },
+        "pagingType": "full_numbers",
+   "paging": true,
+  
+       
+         columns: [
+        { data: 'id' },
+        { data: 'name' },
+        { data: 'patient_id'},
+        { data: 'mrn_no' },
+        { data: 'phone_no'},
+        { data: 'status'},
+        ]
+
+    });
+  
+}
+
+);
+ 
+</script>
