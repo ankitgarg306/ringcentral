@@ -52,7 +52,7 @@ class ContactController extends CI_Controller {
             if (($ext == 'csv') && in_array($mime, $csvMimes)) {
                 $file = $_FILES['file']['tmp_name'];
                 $csvData = $this->csvimport->get_array($file);
-                $headerArr = array("Name", "Phone", "Email", "Created at");
+                $headerArr = array("Name", "Email", "Phone", "Patient","Mrn","Status");
                 if (!empty($csvData)) {
                     //Validate CSV headers
                     $csvHeaders = array_keys($csvData[0]);
@@ -67,14 +67,17 @@ class ContactController extends CI_Controller {
                         // redirect('Employees_Controller/listing'); // redirectpage
                     } else {
                         foreach ($csvData as $row) {
-                            $employee_data = array(
+                            $patient_data = array(
                                 "name" => $row['Name'],
-                                "mobile" => $row['Phone'],
                                 "email" => $row['Email'],
-                                "created_at" => date('Y-m-d H:i:s'),
-                                "updated_at" => date('Y-m-d H:i:s'));
-                            $table_name = "demo_users";
-                            $this->employees_model->save($table_name, $employee_data);
+                                "phone_no" => $row['Phone'],
+                                "patient_id" => $row['Patient'],
+                                "mrn_no" => $row['Mrn'],
+                                "status" => $row['Status'],
+                                "created_on" => date('Y-m-d H:i:s'),
+                                "modified_on" => date('Y-m-d H:i:s')
+                            );
+                            $this->ContactModel->save($patient_data);
                         }
                         $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
                         redirect('ContactController'); // redirectpage
