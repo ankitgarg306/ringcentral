@@ -52,7 +52,7 @@ class ContactController extends CI_Controller {
             if (($ext == 'csv') && in_array($mime, $csvMimes)) {
                 $file = $_FILES['file']['tmp_name'];
                 $csvData = $this->csvimport->get_array($file);
-                $headerArr = array("Name", "Email", "Phone", "Patient","Mrn","Status");
+                $headerArr = array("Firstname","Lastname", "Email", "Phone", "Patient","Mrn","Status");
                 if (!empty($csvData)) {
                     //Validate CSV headers
                     $csvHeaders = array_keys($csvData[0]);
@@ -64,11 +64,13 @@ class ContactController extends CI_Controller {
                     }
                     if ($headerMatched == 0) {
                         $this->session->set_flashdata("error_msg", "CSV headers are not matched.");
-                        // redirect('Employees_Controller/listing'); // redirectpage
+                        redirect('Employees_Controller/listing'); // redirectpage
                     } else {
+                        $duplicatePatients=[];
                         foreach ($csvData as $row) {
                             $patient_data = array(
-                                "name" => $row['Name'],
+                                "firstname" => $row['Firstname'],
+                                "lastname" => $row['Lastname'],
                                 "email" => $row['Email'],
                                 "phone_no" => $row['Phone'],
                                 "patient_id" => $row['Patient'],
@@ -77,9 +79,15 @@ class ContactController extends CI_Controller {
                                 "created_on" => date('Y-m-d H:i:s'),
                                 "modified_on" => date('Y-m-d H:i:s')
                             );
-                            $this->ContactModel->save($patient_data);
+                            $insertFlag = $this->ContactModel->save($patient_data);
+                            if($insertFlag!=true){
+                                $duplicatePatients[]=$row['Patient'];   // store duplicate patient ids
+                            }
                         }
                         $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
+                        if(sizeof($duplicatePatients)>0);
+                        $this->session->set_flashdata("error_msg", "except duplicate patients. \n" . implode(',',$duplicatePatients));
+
                         redirect('ContactController'); // redirectpage
                     }
                 }

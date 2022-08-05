@@ -13,11 +13,33 @@
                                 </div>
                             </div>
                         </div>
+                         <!-- Upload csv error message -->
+                         <div style="color:green;">
+                            <?php
+                            $success_msg = "";
+                            if ($this->session->flashdata('success_msg') && $this->session->flashdata('success_msg') != "") {
+                                $success_msg = $this->session->flashdata('success_msg');
+                            }
+                            echo $success_msg;
+                            ?>
+                        </div>
+                         <div style="color:red;">
+                            <?php
+                            $error_msg = "";
+                            if ($this->session->flashdata('error_msg') && $this->session->flashdata('error_msg') != "") {
+                                $error_msg = $this->session->flashdata('error_msg');
+                            }
+                            echo $error_msg;
+                            ?>
+                        </div>
+                        
+                       <!-- / Upload csv error message -->
       <table id="stdtable" class="table table-bordered table-striped table-hover">
         <thead class="thead-dark">
         <tr>
           <th>Sr.No</th>
-           <th>Name</th>
+           <th>Firstname</th>
+           <th>Lastname</th>
            <th>Patient ID</th>
            <th>MRN No.</th>
            <th>Phone Number</th>
@@ -29,8 +51,9 @@
 		      		//   var_dump($all_contacts);
 		     foreach($all_contacts as $r=>$val) {
 			echo "<tr>"; 
-			      echo "<td><center>".$r."</center></td>"; 
-			      echo "<td>".$val->name."</td>";
+                  echo "<td><center>".$r."</center></td>"; 
+                  echo "<td>".$val->firstname."</td>";
+                  echo "<td>".$val->lastname."</td>";
                   echo "<td>".$val->patient_id."</td>";
                   echo "<td>".$val->mrn_no."</td>";
                   echo "<td>".$val->phone_no."</td>";
@@ -81,28 +104,7 @@
                                                     <input type="submit" name="submit" value="Upload" class="btn btn-dark" />
                                                   </div>
                                                 </form>
-                                                 <!-- Upload csv error message -->
-                                                <div style="color:red;">
-                            <?php
-                            $error_msg = "";
-                            if ($this->session->flashdata('error_msg') && $this->session->flashdata('error_msg') != "") {
-                                $error_msg = $this->session->flashdata('error_msg');
-                            }
-                            echo $error_msg;
-                            ?>
-                        </div>
-                        <div style="color:green;">
-                            <?php
-                            $success_msg = "";
-                            if ($this->session->flashdata('success_msg') && $this->session->flashdata('success_msg') != "") {
-                                $success_msg = $this->session->flashdata('success_msg');
-                            }
-                            echo $success_msg;
-                            ?>
-                        </div>
-                                                 <!-- / Upload csv error message -->
-
-
+                                                
                                               </div>
                                             </div>
                                             </div>
