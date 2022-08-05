@@ -7,15 +7,17 @@ class ChatController extends CI_Controller {
 	{
 		parent::__construct();
 		error_reporting(E_ALL);
+		$this->load->model('ContactModel');
 	}
 	
 	public function index()
-	{ 	$this->load->view('include/header');
+	{ 
+		$data['all_contacts'] = $this->ContactModel->get_all();
+		$this->load->view('include/header');
 		$this->load->view('body/sidebar');
 		$this->load->view('body/userheader');
-		$this->load->view('chat');
+		$this->load->view('chat',$data);
 		$this->load->view('include/footer');
-	
 	}
 
 }
