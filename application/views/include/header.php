@@ -36,7 +36,8 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
     <!-- END: Custom CSS-->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
 </head>
 <!-- END: Head-->
 
