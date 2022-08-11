@@ -1,3 +1,4 @@
+<script src="<?php echo base_url(); ?>js/chat.js" type="text/javascript"></script>
 <ul class="main-search-list-defaultlist d-none">
 	<li class="d-flex align-items-center"><a href="#">
 			<h6 class="section-label mt-75 mb-0">Files</h6>
@@ -532,35 +533,3 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
-<script>
-	function ajaxCall(user) {
-		$.ajax({
-
-			// Our sample url to make request 
-			// url: 'https://jsonplaceholder.typicode.com/todos/1',
-
-			// Type of Request
-			// type: "GET",
-
-			// Function to call when to
-			// request is ok 
-			success: function (data) {
-				// var x = JSON.stringify(data);
-				// console.log(x);
-				const startChat = document.getElementById('startChat');
-				const activeChat = document.getElementById('activechat');
-				startChat.style.display = "none";
-				activeChat.style.display = "block";
-                // chat user changes
-				const chatuser = document.getElementById('chatusername');
-                chatuser.innerHTML = user.firstname + " " + user.lastname;
-				console.log("string :"+  user );
-			},
-			// Error handling 
-			error: function (error) {
-				console.log(`Error ${error}`);
-			}
-		});
-	}
-
-</script>

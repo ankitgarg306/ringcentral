@@ -8,6 +8,8 @@ class ChatController extends CI_Controller {
 		parent::__construct();
 		error_reporting(E_ALL);
 		$this->load->model('ContactModel');
+		$this->load->model('MessageModel');
+
 	}
 	
 	public function index()
@@ -20,4 +22,25 @@ class ChatController extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
+	public function insert()
+	{ 
+		$message = $_POST;
+		$insertFlag = $this->MessageModel->insert($message);
+		if($insertFlag!=true){
+			die('error in save');
+		}
+		die('success save');
+
+	}
+
+	public function loadmessages()
+	{ 
+		$sender_id = $_POST['sender_id'];
+		$user_id = $_POST['user_id'];
+		$data = $this->MessageModel->get_messages($sender_id,$user_id);
+		//add the header here
+		header('Content-Type: application/json');
+		echo json_encode($data);
+
+	}
 }

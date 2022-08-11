@@ -54,5 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['contact'] = 'ContactController';
 $route['chat'] = 'ChatController';
+$route['send'] = 'ChatController/insert';
+$route['message'] = 'ChatController/loadmessages';
+
 
 
