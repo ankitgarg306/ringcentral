@@ -2,7 +2,7 @@
 
 	const base_url = window.location.origin + '/ringcentral/index.php';
 
-	function enterChat(source) {  //pass chat user id and sender id
+	function enterChat(source) { //pass chat user id and sender id
 		var message = $('.message').val();
 		if (/\S/.test(message)) {
 			var html = '<div class="chat-content">' + '<p>' + message + '</p>' + '</div>';
@@ -44,7 +44,7 @@
 
 
 	function ajaxCall(user) {
-    $("#activechat").load(" #activechat > *");  // reload div on chat user changes
+		$("#activechat").load(" #activechat > *"); // reload div on chat user changes
 
 		$.ajax({
 
@@ -54,7 +54,7 @@
 			// Type of Request
 			type: "POST",
 			data: {
-				sender_id:0,
+				sender_id: 0,
 				user_id: user.id,
 			},
 			// Function to call when to
@@ -72,14 +72,18 @@
 				chatuser.innerHTML = user.firstname + " " + user.lastname;
 
 				//add message to screen
-				Object.values(data).forEach(val => {
-					var html = '<div class="chat-content">' + '<p>' + val.message + '</p>' + '</div>';
-					$('.chat:last-child .chat-body').append(html);
-					$('.message').val('');
-					$('.user-chats').scrollTop($('.user-chats > .chats').height());
-
+				data.map(val => {
+					console.log(val);
+					if (val.sender_id == 0) {
+						var html = '<div class="chat"><div class="chat-body"><div class="chat-content">' + '<p>' + val.message + '</p>' + '</div></div></div>';
+						$('.chats:last-child').append(html);
+						$('.user-chats').scrollTop($('.user-chats > .chats').height());
+					} else {
+						var html = '<div class="chat chat-left"><div class="chat-body"><div class="chat-content">' + '<p>' + val.message + '</p>' + '</div> </div></div>';
+						$('.chats:last-child').append(html);
+						$('.user-chats').scrollTop($('.user-chats > .chat-left').height());
+					}
 				});
-				console.log("string :" + JSON.stringify(user));
 			},
 			// Error handling 
 			error: function (error) {

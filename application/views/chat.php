@@ -372,56 +372,12 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<!-- User Chat messages -->
 							<div class="user-chats">
 								<div class="chats">
-									<div class="chat">
-										<div class="chat-avatar">
-											<span class="avatar box-shadow-1 cursor-pointer">
-												<img src="<?php echo base_url(); ?>assets/app-assets/images/portrait/small/avatar-s-11.jpg"
-													alt="avatar" height="36" width="36" />
-											</span>
-										</div>
-										<div class="chat-body">
-											<div class="chat-content">
-												<p>How can we help? We're here for you! 😄</p>
-											</div>
-										</div>
-									</div>
-									<div class="chat chat-left">
-										<div class="chat-avatar">
-											<span class="avatar box-shadow-1 cursor-pointer">
-												<img src="<?php echo base_url(); ?>assets/app-assets/images/portrait/small/avatar-s-7.jpg"
-													alt="avatar" height="36" width="36" />
-											</span>
-										</div>
-										<div class="chat-body">
-											<div class="chat-content">
-												<p>Hey John, I am looking for the best admin template.</p>
-												<p>Could you please help me to find it out? 🤔</p>
-											</div>
-											<div class="chat-content">
-												<p>It should be Bootstrap 4 compatible.</p>
-											</div>
-										</div>
-									</div>
+									 
+									 
 									<div class="divider">
 										<div class="divider-text">Yesterday</div>
 									</div>
-									<div class="chat">
-										<div class="chat-avatar">
-											<span class="avatar box-shadow-1 cursor-pointer">
-												<img src="<?php echo base_url(); ?>assets/app-assets/images/portrait/small/avatar-s-11.jpg"
-													alt="avatar" height="36" width="36" />
-											</span>
-										</div>
-										<div class="chat-body">
-											<div class="chat-content">
-												<p>Absolutely!</p>
-											</div>
-											<div class="chat-content">
-												<p>Vuexy admin is the responsive bootstrap 4 admin template.</p>
-											</div>
-										</div>
-									</div>
-								
+									 
 									
 								</div>
 							</div>
