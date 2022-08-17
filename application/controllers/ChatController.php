@@ -6,7 +6,6 @@ class ChatController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		error_reporting(E_ALL);
 		$this->load->model('ContactModel');
 		$this->load->model('MessageModel');
 
@@ -15,11 +14,8 @@ class ChatController extends CI_Controller {
 	public function index()
 	{ 
 		$data['all_contacts'] = $this->ContactModel->get_all();
-		$this->load->view('include/header');
-		$this->load->view('body/sidebar');
-		$this->load->view('body/userheader');
-		$this->load->view('chat',$data);
-		$this->load->view('include/footer');
+		$data['viewFile']='pages/chat';
+		$this->load->view('container',$data);
 	}
 
 	public function insert()

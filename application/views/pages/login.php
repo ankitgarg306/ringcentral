@@ -60,10 +60,12 @@
                                     <h2 class="brand-text text-primary ms-1">Ring Central</h2>
                                 </a>
 
-                                <form class="auth-login-form mt-2" action="index.html" method="POST">
+                                <form class="auth-login-form mt-2" action="<?php echo site_url('LoginController/login'); ?>" method="POST">
+                                <?php echo validation_errors(); ?>  
                                     <div class="mb-1">
                                         <label for="login-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="login-email" name="login-email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
+                                        <input type="text" value="<?php echo set_value('email'); ?>" class="form-control" id="login-email" name="email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
+                                    <?php echo form_error('email', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
                                     </div>
 
                                     <div class="mb-1">
@@ -74,10 +76,12 @@
                                             </a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="login-password" name="login-password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" value="<?php echo set_value('password'); ?>" placeholder="admin123#" aria-describedby="login-password" />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
+                                    <?php echo form_error('password', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
                                     </div>
+                                    <div class="alert alert-danger" role="alert"> <?php echo $this->session->flashdata('login_error'); ?> </div>
                                     <div class="mb-1">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" />

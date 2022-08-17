@@ -13,11 +13,8 @@ class ContactController extends CI_Controller {
 	public function index()
 	{ 
 		$data['all_contacts'] = $this->ContactModel->get_all();
-		$this->load->view('include/header');
-		$this->load->view('body/sidebar');
-		$this->load->view('body/userheader');
-		$this->load->view('contact',$data);
-		$this->load->view('include/footer');
+		$data['viewFile']='pages/contact';
+		$this->load->view('container',$data);
 	}
 
 	// get table for ajax serverside datatable

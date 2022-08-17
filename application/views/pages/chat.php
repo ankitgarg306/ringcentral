@@ -489,3 +489,10 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
+<script>
+		$('#chat-search').keyup(function() {
+		console.log($(this).val());
+		//perform ajax call...
+		// alert($(this).val());
+	 });
+	</script>
