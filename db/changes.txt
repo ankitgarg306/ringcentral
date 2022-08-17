@@ -1,1 +1,3 @@
 //add db changes here
+18 Aug 2022- added one cols 
+ALTER TABLE `message_log` ADD `msg_type` INT(4) NOT NULL DEFAULT '1' COMMENT '1-sending 2-recieving' AFTER `user_id`; 
