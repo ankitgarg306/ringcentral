@@ -29,6 +29,19 @@
             $query = $this->db->insert(TBL_MESSAGE_LOG, $row);
             return ($this->db->affected_rows() > 0);
             }
+            
+            // Get all messages
+        function get_chat_users($sender_id,$limit=NULL,$offset=NULL)                      
+        {
+            // $where = "(sender_id={$sender_id} AND  (msg_type=1 OR msg_type=2))";
+            $SQL = "(SELECT contact.id, contact.patient_id,contact.firstname,contact.lastname, message, MAX(message_log.created_on) AS CreationDate FROM message_log 
+            INNER JOIN contact ON contact.id = message_log.user_id
+            WHERE sender_id={$sender_id} 
+            GROUP BY user_id ORDER BY CreationDate DESC)";
+            $query = $this->db->query($SQL);
+            $data = $query->result();
+            return $data;
+        }
     }
        
     ?>

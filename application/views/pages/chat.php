@@ -252,17 +252,23 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 					<div id="users-list" class="chat-user-list-wrapper list-group">
 						<h4 class="chat-list-title">Chats</h4>
 						<ul class="chat-users-list chat-list media-list">
-							<li>
+						<?php
+                            if(sizeof($chat_users)>0){
+                             foreach($chat_users as $r=>$val) { ?>
+							<li onclick="fetch_messages(
+								<?php echo $val->id;?>,
+								'<?php echo $val->firstname;?>',
+								'<?php echo $val->lastname;?>',
+								<?php echo $this->session->userdata('user_id'); ?>);">
 								<span class="avatar"><img
 										src="<?php echo base_url(); ?>assets/app-assets/images/portrait/small/avatar-s-3.jpg"
 										height="42" width="42" alt="Generic placeholder image" />
 									<span class="avatar-status-offline"></span>
 								</span>
 								<div class="chat-info flex-grow-1">
-									<h5 class="mb-0">Elizabeth Elliott</h5>
+									<h5 class="mb-0"><?php echo $val->firstname ."-".$val->patient_id; ?></h5>
 									<p class="card-text text-truncate">
-										Cake pie jelly jelly beans. Marzipan lemon drops halvah cake. Pudding cookie
-										lemon drops icing
+									<?php echo $val->message;?>
 									</p>
 								</div>
 								<div class="chat-meta text-nowrap">
@@ -270,9 +276,13 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 									<span class="badge bg-danger rounded-pill float-end">3</span>
 								</div>
 							</li>
+							<?php  } 
+                            } else
+                            { ?>
 							<li class="no-results">
 								<h6 class="mb-0">No Chats Found</h6>
 							</li>
+							<?php  } ?>
 						</ul>
 						<h4 class="chat-list-title">Contacts</h4>
 						<ul class="chat-users-list contact-list media-list">

@@ -13,6 +13,8 @@ class ChatController extends CI_Controller {
 	
 	public function index()
 	{ 
+		$userid = $this->session->userdata('user_id');
+		$data['chat_users'] = $this->MessageModel->get_chat_users($userid);
 		$data['all_contacts'] = $this->ContactModel->get_all();
 		$data['viewFile']='pages/chat';
 		$this->load->view('container',$data);
