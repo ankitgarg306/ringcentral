@@ -1,12 +1,13 @@
 	// Add message to chat - function call on form submit
 
 	const base_url = window.location.origin + '/ringcentral/index.php';
+	var receiver_id = null;
 
-	function enterChat(source) { //pass chat user id and sender id
+	function send_message(sender_id) { //pass chat user id and sender id
 		var message = $('.message').val();
 		if (/\S/.test(message)) {
-			var html = '<div class="chat-content">' + '<p>' + message + '</p>' + '</div>';
-			$('.chat:last-child .chat-body').append(html);
+			var html = '<div class="chat"><div class="chat-body"><div class="chat-content">' + '<p>' + message + '</p>' + '</div></div></div>';
+			$('.chats:last-child').append(html);
 			$('.message').val('');
 			$('.user-chats').scrollTop($('.user-chats > .chats').height());
 			const date = new Date();
@@ -18,9 +19,10 @@
 				// Our sample url to make request 
 				url: `${base_url}/send`,
 				data: {
-					sender_id: 0,
-					user_id: 1,
+					sender_id: sender_id,
+					user_id: receiver_id,
 					status: 1,
+					msg_type: 1,
 					message: message,
 					created_on: datestring
 				},
@@ -43,7 +45,7 @@
 	}
 
 
-	function ajaxCall(user) {
+	function fetch_messages(userid, user_firstname, user_lastname, senderid) {
 		$("#activechat").load(" #activechat > *"); // reload div on chat user changes
 
 		$.ajax({
@@ -54,8 +56,8 @@
 			// Type of Request
 			type: "POST",
 			data: {
-				sender_id: 0,
-				user_id: user.id,
+				sender_id: senderid,
+				user_id: userid,
 			},
 			// Function to call when to
 			// request is ok 
@@ -69,12 +71,12 @@
 				// chat user changes
 
 				const chatuser = document.getElementById('chatusername');
-				chatuser.innerHTML = user.firstname + " " + user.lastname;
-
+				chatuser.innerHTML = user_firstname + " " + user_lastname;
+				receiver_id = userid;
 				//add message to screen
 				data.map(val => {
 					console.log(val);
-					if (val.sender_id == 0) {
+					if (val.msg_type == 1) {
 						var html = '<div class="chat"><div class="chat-body"><div class="chat-content">' + '<p>' + val.message + '</p>' + '</div></div></div>';
 						$('.chats:last-child').append(html);
 						$('.user-chats').scrollTop($('.user-chats > .chats').height());

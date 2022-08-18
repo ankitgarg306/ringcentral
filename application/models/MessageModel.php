@@ -10,8 +10,8 @@
         // Get all messages
         function get_messages($sender_id,$user_id,$limit=NULL,$offset=NULL)                      
         {
-            $where = "(sender_id={$sender_id} AND user_id={$user_id}) OR (user_id={$sender_id} AND sender_id={$user_id})";
-            $this->db->select('sender_id,user_id,status,message,created_on');
+            $where = "(sender_id={$sender_id} AND user_id={$user_id} AND msg_type=1) OR (user_id={$sender_id} AND sender_id={$user_id} AND msg_type=2)";
+            $this->db->select('sender_id,user_id,msg_type,message,created_on');
             $this->db->from(TBL_MESSAGE_LOG); 
             $this->db->where($where);
             // $this->db->where('sender_id=', $sender_id);

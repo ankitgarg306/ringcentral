@@ -279,7 +279,11 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<?php
                             if(sizeof($all_contacts)>0){
                              foreach($all_contacts as $r=>$val) { ?>
-							<li onclick='ajaxCall(<?php echo json_encode($val);?>);'>
+							<li onclick="fetch_messages(
+								<?php echo $val->id;?>,
+								'<?php echo $val->firstname;?>',
+								'<?php echo $val->lastname;?>',
+								<?php echo $this->session->userdata('user_id'); ?>);">
 								<span class="avatar"><img
 										src="<?php echo base_url(); ?>assets/app-assets/images/portrait/small/avatar-s-8.jpg"
 										height="42" width="42" alt="Generic placeholder image" />
@@ -384,7 +388,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<!-- User Chat messages -->
 
 							<!-- Submit Chat form -->
-							<form class="chat-app-form" action="javascript:void(0);" onsubmit="enterChat();">
+							<form class="chat-app-form" action="javascript:void(0);" onsubmit="send_message(<?php echo $this->session->userdata('user_id'); ?>);">
 								<div class="input-group input-group-merge me-1 form-send-message">
 									<span class="speech-to-text input-group-text"><i data-feather="mic"
 											class="cursor-pointer"></i></span>
@@ -395,7 +399,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 											<i data-feather="image" class="cursor-pointer text-secondary"></i>
 											<input type="file" id="attach-doc" hidden /> </label></span>
 								</div>
-								<button type="button" class="btn btn-primary send" onclick="enterChat();">
+								<button type="button" class="btn btn-primary send" onclick="send_message(<?php echo $this->session->userdata('user_id'); ?>);">
 									<i data-feather="send" class="d-lg-none"></i>
 									<span class="d-none d-lg-block">Send</span>
 								</button>
