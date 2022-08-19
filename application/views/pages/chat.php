@@ -1,4 +1,5 @@
 <script src="<?php echo base_url(); ?>js/chat.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>styles/chat.css" />
 <ul class="main-search-list-defaultlist d-none">
 	<li class="d-flex align-items-center"><a href="#">
 			<h6 class="section-label mt-75 mb-0">Files</h6>
@@ -249,7 +250,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 					<!-- Sidebar header end -->
 
 					<!-- Sidebar Users start -->
-					<div id="users-list" class="chat-user-list-wrapper list-group">
+					<div id="users-list" class="chat-user-list-wrapper list-group scrolly">
 						<h4 class="chat-list-title">Chats</h4>
 						<ul class="chat-users-list chat-list media-list">
 						<?php
@@ -384,7 +385,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<!--/ Chat Header -->
 
 							<!-- User Chat messages -->
-							<div class="user-chats">
+							<div class="user-chats scrolly">
 								<div class="chats">
 									 
 									 
@@ -400,14 +401,16 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<!-- Submit Chat form -->
 							<form class="chat-app-form" action="javascript:void(0);" onsubmit="send_message(<?php echo $this->session->userdata('user_id'); ?>);">
 								<div class="input-group input-group-merge me-1 form-send-message">
-									<span class="speech-to-text input-group-text"><i data-feather="mic"
-											class="cursor-pointer"></i></span>
-									<input type="text" class="form-control message"
-										placeholder="Type your message or use speech to text" />
-									<span class="input-group-text">
+									<!-- <span class="speech-to-text input-group-text"><i data-feather="mic"
+											class="cursor-pointer"></i></span> -->
+									<!-- <input type="text" class="form-control message"
+										placeholder="Type your message or use speech to text" /> -->
+										<textarea class="form-control message textarea-resize-none"
+										placeholder="Type your message " rows="2" cols="50"></textarea>
+									<!-- <span class="input-group-text">
 										<label for="attach-doc" class="attachment-icon form-label mb-0">
 											<i data-feather="image" class="cursor-pointer text-secondary"></i>
-											<input type="file" id="attach-doc" hidden /> </label></span>
+											<input type="file" id="attach-doc" hidden /> </label></span> -->
 								</div>
 								<button type="button" class="btn btn-primary send" onclick="send_message(<?php echo $this->session->userdata('user_id'); ?>);">
 									<i data-feather="send" class="d-lg-none"></i>

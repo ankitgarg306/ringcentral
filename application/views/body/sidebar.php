@@ -11,7 +11,7 @@
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo base_url(); ?>"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a></li>
-          <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo site_url('ChatController/index') ?>"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Send Message</span></a>
+          <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo site_url('ChatController/index') ?>"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Messages</span></a>
           </li>
           <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo site_url('ContactController/index') ?>"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Contacts</span></a>
           </li>
