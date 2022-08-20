@@ -385,7 +385,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 							<!--/ Chat Header -->
 
 							<!-- User Chat messages -->
-							<div class="user-chats scrolly">
+							<div class="height-70  scrolly user-chats">
 								<div class="chats">
 									 
 									 
@@ -406,7 +406,7 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 									<!-- <input type="text" class="form-control message"
 										placeholder="Type your message or use speech to text" /> -->
 										<textarea class="form-control message textarea-resize-none"
-										placeholder="Type your message " rows="2" cols="50"></textarea>
+										placeholder="Type your message " rows="2" cols="50" id="message_textarea" name="message_textarea"></textarea>
 									<!-- <span class="input-group-text">
 										<label for="attach-doc" class="attachment-icon form-label mb-0">
 											<i data-feather="image" class="cursor-pointer text-secondary"></i>
@@ -416,7 +416,12 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 									<i data-feather="send" class="d-lg-none"></i>
 									<span class="d-none d-lg-block">Send</span>
 								</button>
+								
 							</form>
+							<div class="mb-1 dropup">
+                                        <label for="templates" class="form-label">Select template :</label>
+								<?php echo form_dropdown('templates', array_column($all_templates,'name'), $selected_template, 'class="form-control" id="templates" onChange="dropdownOnChange()"'); ?>
+							</div>
 							<!--/ Submit Chat form -->
 						</div>
 						<!--/ Active Chat -->
@@ -507,9 +512,19 @@ Dessert chocolate cake lemon drops jujubes. Biscuit cupcake ice cream bear claw 
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
 <script>
-		$('#chat-search').keyup(function() {
-		console.log($(this).val());
-		//perform ajax call...
-		// alert($(this).val());
-	 });
+		$('#chat-search').keyup(function () {
+			console.log($(this).val());
+			//perform ajax call...
+			// alert($(this).val());
+		});
+
+		function dropdownOnChange() {
+			var template_dropdown = document.getElementById('templates');
+			var message_textarea = document.getElementById('message_textarea');
+			console.log(template_dropdown);
+			var option = template_dropdown.options[template_dropdown.selectedIndex];
+			var mtext = <?php echo json_encode($all_templates); ?>;
+			var el = mtext.find(item=>item.name==option.text);
+			message_textarea.value = el.message;
+		}
 	</script>

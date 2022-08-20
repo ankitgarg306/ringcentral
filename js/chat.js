@@ -34,7 +34,7 @@
 				// request is ok 
 				success: function (x) {
 					// var x = JSON.stringify(data);
-					console.log(x);
+					// console.log(x);
 				},
 				// Error handling 
 				error: function (error) {
@@ -75,7 +75,6 @@
 				receiver_id = userid;
 				//add message to screen
 				data.map(val => {
-					console.log(val);
 					if (val.msg_type == 1) {
 						var html = '<div class="chat"><div class="chat-body"><div class="chat-content">' + '<p>' + val.message + '</p>' + '</div></div></div>';
 						$('.chats:last-child').append(html);

@@ -15,7 +15,7 @@
           </li>
           <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo site_url('ContactController/index') ?>"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Contacts</span></a>
           </li>
-          <li class=" nav-item"><a class="d-flex align-items-center" href="app-calendar.html"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Template</span></a>
+          <li class=" nav-item"><a class="d-flex align-items-center" href="<?php echo site_url('TemplateController/index') ?>"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Template</span></a>
           </li>
         </ul>
       </div>

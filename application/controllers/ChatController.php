@@ -8,6 +8,8 @@ class ChatController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('ContactModel');
 		$this->load->model('MessageModel');
+		$this->load->model('TemplateModel');
+		$this->load->helper('form');
 
 	}
 	
@@ -16,6 +18,8 @@ class ChatController extends CI_Controller {
 		$userid = $this->session->userdata('user_id');
 		$data['chat_users'] = $this->MessageModel->get_chat_users($userid);
 		$data['all_contacts'] = $this->ContactModel->get_all();
+		$data['all_templates'] = $this->TemplateModel->get_template_messages();
+		$data['selected_template'] = "";
 		$data['viewFile']='pages/chat';
 		$this->load->view('container',$data);
 	}
